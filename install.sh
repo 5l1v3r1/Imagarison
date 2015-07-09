@@ -4,5 +4,7 @@ sudo apt-get install libcairo2-dev
 sudo apt-get install libpango1.0-dev
 
 sudo apt-get install git
+
+git clone https://github.com/torque59/Imagarison.git
  
 echo "[+] Now go to Imagarison Folder and do npm install node-resemble"
