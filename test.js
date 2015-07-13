@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var fs = require('fs');
 var resemble = require('node-resemble');
 
@@ -11,6 +12,17 @@ var img1 = fs.readFileSync('./a.png');
 
 var img2 = fs.readFileSync('./b.png');
   
+=======
+
+var fs = require('fs');
+
+var resemble = require('node-resemble');
+
+var img1 = fs.readFileSync('./a.png');
+
+var img2 = fs.readFileSync('./b.png');
+
+>>>>>>> 9edac84b77295cffba31cc74f1bf5b01de1a5cf5
 resemble(img1).compareTo(img2).onComplete(function(data){
     console.log(data.misMatchPercentage);
 });
