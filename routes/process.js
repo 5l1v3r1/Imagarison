@@ -5,9 +5,11 @@ var express = require('express');
 var request = require('sync-request');
 var router = express.Router();
 var app = express();
-var resemble = require('node-resemble-js');
+var resemble = require('node-resemble');
 
 
+var url=[];
+var filenames=[];
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('process', { title: 'Express' });
@@ -32,21 +34,20 @@ router.post('/', function(req, res, next)
 	var file1 = fs.createWriteStream("public/images/file1"+link1.slice(-4));
 	var file2 = fs.createWriteStream("public/images/file2"+link1.slice(-4));*/
 
-	url=[link1,link2]
+	url=[link1,link2];
 
 	console.log("Downloading the url's");
 
-	var filenames = []
 
 	for(i=0;i<2;i++)
 	{
 	
-		console.log("Downloading " + url[0]);
+		console.log("Downloading " + url[i]);
 		var k = request('GET',url[i]);
 		var good = fs.createWriteStream("public/images/file"+String.fromCharCode(97+i)+url[i].slice(-4));
 		good.write(k.getBody());
 		//download(url[i],'/home/opensec/Desktop/Imagarison/'+String.fromCharCode(97+i)+url[i].slice(-4));//Change Path to Ur Windows/Linux Full Path
-		filenames.push('/public/images/file'+String.fromCharCode(97+i)+url[i].slice(-4));
+		filenames.push('/images/file'+String.fromCharCode(97+i)+url[i].slice(-4));
 	}
 
 	console.log("Download Completed");
@@ -68,13 +69,14 @@ router.post('/', function(req, res, next)
 router.get('/result', function(req, res, next) {
 
 
-var img1 = fs.readFileSync("public/images/filea.png");
-var img2 = fs.readFileSync("public/images/fileb.png");
+var img1 = fs.readFileSync("public/images/file"+String.fromCharCode(97)+url[0].slice(-4));
+var img2 = fs.readFileSync("public/images/file"+String.fromCharCode(98)+url[0].slice(-4));
 
 
 
 var diff = resemble(img1).compareTo(img2).onComplete(function(data){	
 
+console.log(data);
 var alldata=JSON.stringify(data);
 var issamedim=data.isSameDimensions;
 var mispers=data.misMatchPercentage;
@@ -89,7 +91,9 @@ res.render('result', { title: 'Imagarison',
 		ejsmispers:mispers1,
 		ejsdimdiffwidth:dimdiffwidth,
 		ejsdimdiffheight:dimdiffheight,
-		ejsanalysis:analysis
+		ejsanalysis:analysis,
+		ejslink1:filenames[0],
+		ejslink2:filenames[1]
 		
 	});
 
