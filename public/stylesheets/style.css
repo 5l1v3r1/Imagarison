@@ -38,3 +38,9 @@ input[type=text]{
 .txtcenter{
 	text-align: center;
 }
+
+
+.resimg img{
+	max-width:500px;
+	max-height:500px;
+}

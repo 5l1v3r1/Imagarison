@@ -1,30 +1,18 @@
+global.check='';
 var fs = require('fs');
 var http =require('http');
 var express = require('express');
 var router = express.Router();
-
+var app = express();
 var resemble = require('node-resemble-js');
-/*
-function download(url, dest, callback) {
-    var file = fs.createWriteStream(dest);
-    var request = http.get(url, function (response) {
-        response.pipe(file);
-        file.on('finish', function () {
-            file.close(callback); // close() is async, call callback after close completes.
-        });
-        file.on('error', function (err) {
-            fs.unlink(dest); // Delete the file async.
-            if (callback)
-                callback(err.message);
-        });
-    });
-}
-*/
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('process', { title: 'Express' });
 });
+
+
 
 router.post('/', function(req, res, next) {
   res.render('process', { title: 'Imagarison', 
@@ -34,8 +22,8 @@ router.post('/', function(req, res, next) {
 	var link2 = req.body.link2;
 
 	
-	var file1 = fs.createWriteStream("assets/file1"+link1.slice(-4));
-	var file2 = fs.createWriteStream("assets/file2"+link1.slice(-4));
+	var file1 = fs.createWriteStream("public/images/file1"+link1.slice(-4));
+	var file2 = fs.createWriteStream("public/images/file2"+link1.slice(-4));
 	var request1 = http.get(link1, function(response) {
   	response.pipe(file1);
 	});
@@ -45,31 +33,60 @@ router.post('/', function(req, res, next) {
 
 
 
-var img1 = fs.readFileSync("assets/file1"+link1.slice(-4));
-var img2 = fs.readFileSync("assets/file2"+link1.slice(-4));
-
-
-// Not executing the resemble (check)
-
-var diff = resemble(img1).compareTo(img2).ignoreColors().onComplete(function(data)
-{
-    //console.log("h");
-    console.log(data);
-});
-
-console.log(diff);
-
-
 
 //	download(link1,'assets/file1.jpg');
 //	download(link2,'assets/file2.jpg');
 	
 
+});
+
+
+
+router.get('/result', function(req, res, next) {
+
+
+var img1 = fs.readFileSync("public/images/file1.png");
+var img2 = fs.readFileSync("public/images/file2.png");
+
+
+
+
+resemble(img1).onComplete(function(data){
+    	//console.log(data);
+	global.check=data;
+	//console.log(global.check);
+	//global.jpost = JSON.stringify(data);
 	
+   
 	
+});
+
+
+
+console.log(global.check);
+
+var jpost='';
+  res.render('result', { title: 'Imagarison', 
+		des:jpost
+		
+	});
+
+	
+
+ 
+
+
+
+console.log("========");
+var diff = resemble(img1).compareTo(img2).onComplete(function(data){
+    console.log(data);
+});
+
 
 
 });
+
+
 
 
 module.exports = router;
