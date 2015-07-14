@@ -78,6 +78,7 @@ var diff = resemble(img1).compareTo(img2).onComplete(function(data){
 var alldata=JSON.stringify(data);
 var issamedim=data.isSameDimensions;
 var mispers=data.misMatchPercentage;
+var mispers1=Math.round(100-mispers);
 var dimdiffwidth=data.dimensionDifference.width;
 var dimdiffheight=data.dimensionDifference.height;
 var analysis=data.analysisTime;
@@ -85,7 +86,7 @@ var analysis=data.analysisTime;
 res.render('result', { title: 'Imagarison', 
 		ejsalldata:alldata,
 		ejsissamedim:issamedim,
-		ejsmispers:mispers,
+		ejsmispers:mispers1,
 		ejsdimdiffwidth:dimdiffwidth,
 		ejsdimdiffheight:dimdiffheight,
 		ejsanalysis:analysis
