@@ -50,36 +50,25 @@ var img2 = fs.readFileSync("public/images/file2.png");
 
 
 
+var diff = resemble(img1).compareTo(img2).onComplete(function(data){	
 
-resemble(img1).onComplete(function(data){
-    	//console.log(data);
-	global.check=data;
-	//console.log(global.check);
-	//global.jpost = JSON.stringify(data);
-	
-   
-	
-});
+var alldata=JSON.stringify(data);
+var issamedim=data.isSameDimensions;
+var mispers=data.misMatchPercentage;
+var dimdiffwidth=data.dimensionDifference.width;
+var dimdiffheight=data.dimensionDifference.height;
+var analysis=data.analysisTime;
 
-
-
-console.log(global.check);
-
-var jpost='';
-  res.render('result', { title: 'Imagarison', 
-		des:jpost
+res.render('result', { title: 'Imagarison', 
+		ejsalldata:alldata,
+		ejsissamedim:issamedim,
+		ejsmispers:mispers,
+		ejsdimdiffwidth:dimdiffwidth,
+		ejsdimdiffheight:dimdiffheight,
+		ejsanalysis:analysis
 		
 	});
 
-	
-
- 
-
-
-
-console.log("========");
-var diff = resemble(img1).compareTo(img2).onComplete(function(data){
-    console.log(data);
 });
 
 

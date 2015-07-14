@@ -49,4 +49,6 @@ input[type=text]{
 	color:#000;
 }
 
-
+.border{
+	border:3px solid #fff;
+}
