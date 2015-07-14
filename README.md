@@ -20,6 +20,6 @@ Downloads the images from the URL and does a Comparison and Gives a Percentage S
   ![Alt text](http://i.imgur.com/lLUNmqM.png?1 "Screen1")
   ![Alt text](http://i.imgur.com/obIRSdL.png?1 "Screen1")
 
-Open [http://127.0.0.1:3000](http://127.0.0.1:3000)
+Open [http://localhost:3000](http://localhost:3000)
 
 
