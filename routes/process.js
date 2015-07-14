@@ -85,6 +85,9 @@ var mispers1=temp.toFixed(2);
 var dimdiffwidth=data.dimensionDifference.width;
 var dimdiffheight=data.dimensionDifference.height;
 var analysis=data.analysisTime;
+var test1=filenames[0];
+var test2=filenames[1];
+filenames=[];
 
 res.render('result', { title: 'Imagarison', 
 		ejsalldata:alldata,
@@ -93,8 +96,8 @@ res.render('result', { title: 'Imagarison',
 		ejsdimdiffwidth:dimdiffwidth,
 		ejsdimdiffheight:dimdiffheight,
 		ejsanalysis:analysis,
-		ejslink1:filenames[0],
-		ejslink2:filenames[1]
+		ejslink1:test1,
+		ejslink2:test2
 		
 	});
 
