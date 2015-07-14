@@ -17,8 +17,8 @@ Downloads the images from the URL and does a Comparison and Gives a Percentage S
       $npm start
       
 ###Screenshots
-  ![Alt text](http://i.imgur.com/lLUNmqM.png?1 "Screen1")
-  ![Alt text](http://i.imgur.com/obIRSdL.png?1 "Screen1")
+  ![Alt text](http://i.imgur.com/tjJbzgj.png "Screen1")
+  ![Alt text](http://i.imgur.com/Hof5A0g.png?1 "Screen1")
 
 ###References 
   Resemble.js https://github.com/Huddle/Resemble.js/
