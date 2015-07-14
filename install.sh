@@ -1,4 +1,3 @@
-npm install -g request
 echo "[+] For installing node-resemble"
 sudo apt-get install libgif-dev
 sudo apt-get install libcairo2-dev

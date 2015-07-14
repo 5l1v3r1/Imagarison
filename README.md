@@ -11,6 +11,8 @@ Downloads the images from the URL and does a Comparison and Gives a Percentage S
 
 ###Install Dependencies
       $ cd Imagarison
+      $ chmod +x install.sh
+      $ ./install.sh
       $ npm install
       
 ### Run
